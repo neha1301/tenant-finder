@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react';
 
 export const AuthContext = createContext({});
 
-function AuthProvider(props) {
+function AuthProvider({ children }) {
   const [authData, setAuthData] = useState({});
 
   const updateAuth = ({loggedIn, mobile, email,role}) => {
@@ -15,7 +15,7 @@ function AuthProvider(props) {
     <AuthContext.Provider
       value={authContextValue}
     >
-      {props?.children}
+      {children}
     </AuthContext.Provider>
   )
 }
