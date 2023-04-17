@@ -3,11 +3,19 @@ import axios from 'axios';
 
 const FileUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(null);
+  const [base64String, setBase64String] = useState(null);
 
-  const fileSelectedHandler = (e) => {
-    setSelectedFile(e.target.files[0]);
-    setPreviewUrl(URL.createObjectURL(e.target.files[0]));
+  const fileSelectedHandler = (event) => {
+    const file = event.target.files[0];
+
+    // Read the selected file as a data URL
+    const reader = new FileReader();
+    reader.onload = () => {
+      // Convert the data URL to a base64 string
+      const base64 = reader.result;
+      setBase64String(base64);
+    };
+    reader.readAsDataURL(file);
   };
 
   const fileUploadHandler = async (e) => {
@@ -28,7 +36,7 @@ const FileUpload = () => {
     <div>
       <form onSubmit={fileUploadHandler}>
         <input type="file" onChange={fileSelectedHandler} />
-        {previewUrl && <img src={previewUrl} alt="Preview" />}
+        {base64String && <img style={{width: "90%", height: "auto"}} src={base64String} alt="Preview" />}
         <button type="submit" disabled={!selectedFile}>
           Upload
         </button>
@@ -37,7 +45,4 @@ const FileUpload = () => {
   );
 };
 
-
-
 export default FileUpload
-

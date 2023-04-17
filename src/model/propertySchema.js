@@ -9,11 +9,11 @@ const propertySchema = new Schema(
     securityDeposit: Number,
     description: String,
     imageList: [String],
-    location: {
+    // location: {
       // Open in google map
-      name: String,
-      googleMapLocation: String,
-    },
+    locationName: String,
+    googleMapLocation: String,
+    // },
   },
   {
     collection: "properties",
