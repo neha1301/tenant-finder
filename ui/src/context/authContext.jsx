@@ -2,14 +2,14 @@ import React, { createContext, useContext } from 'react';
 
 export const AuthContext = createContext({});
 
-function AuthProvider({ children }) {
+export const AuthProvider = function ({ children, value }) {
   const [authData, setAuthData] = useState({});
 
   const updateAuth = ({loggedIn, mobile, email,role}) => {
     setAuthData({loggedIn, mobile, email,role});
   }
 
-  const authContextValue = { authData, updateAuth }
+  const authContextValue = { authData: value || authData, updateAuth }
 
   return (
     <AuthContext.Provider
@@ -20,4 +20,4 @@ function AuthProvider({ children }) {
   )
 }
 
-export default { AuthProvider, useAuth: useContext(AuthContext)};
+export const useAuth = useContext(AuthContext);
