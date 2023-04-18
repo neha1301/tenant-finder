@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./styles.module.css";
+import Nav from '../../Navbar/Nav';
 
 export default function () {
 
@@ -74,6 +75,8 @@ export default function () {
   }, [formData])
 
   return (
+    <>
+      <Nav />
     <div className={styles["root"]}>
       <form onSubmit={handleFormSubmit}>
         <label className={styles["input-block"]}>
@@ -119,5 +122,6 @@ export default function () {
         </label>
       </form>
     </div>
+    </>
   )
 }
