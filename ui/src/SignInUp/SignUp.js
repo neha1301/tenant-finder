@@ -11,7 +11,7 @@ function SignUp() {
 		navigate('/signIn');
 	}
 
-  const handleSignup = (signUpData) => {
+  const handleSignup = async (signUpData) => {
     console.log("signUpData - ", signUpData);
     try {
       let response  =  await  axios.post("http://localhost:5001/api/signup", signUpData)
