@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { authController } = require("../controller");
 
-router.post('/signup', async (req, res) => {
+router.post('/api/signup', async (req, res) => {
     const { mobileNumber } = req.body;
+
+    console.log("req.body - ", req.body);
 
     try {
         let result = await authController.signUpUser(req.body);
@@ -30,7 +32,7 @@ router.post('/signup', async (req, res) => {
 
 })
 
-router.post('/get-otp', async (req, res) => {
+router.post('/api/get-otp', async (req, res) => {
     try {
         let result = await authController.getOtp(req.body);
         res.status(201).json({
@@ -49,7 +51,7 @@ router.post('/get-otp', async (req, res) => {
     }
 })
 
-router.get('/verify-otp', async (req, res) => {
+router.get('/api/verify-otp', async (req, res) => {
     try {
         let result = await authController.getOtp(req.body);
         res.status(200).json({
@@ -68,14 +70,19 @@ router.get('/verify-otp', async (req, res) => {
     }
 })
 
-router.get('/signin', async (req, res) => {
+router.get('/api/signin', async (req, res) => {
+    // const {mobileNumber, role, password}  = req.query;
+
+    // console.log("{mobileNumber, role, password} - ", req.query)
     try {
-        let result = await authController.getOtp(req.body);
+        let result = await authController.signinUser(req.query);
+        // result.password?.delete()
+        const { firstName, lastName, email, role, mobileNumber } = result;
         res.status(200).json({
             status: "SUCCESS", // | "FAILED",
             message: "User logged in successfuly.",
             // error: "",
-            data: result,
+            data: { firstName, lastName, email, role: "ADMIN", mobileNumber },
         });
 
     } catch (error) {

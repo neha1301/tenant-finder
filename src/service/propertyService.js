@@ -32,7 +32,7 @@ function saveProperty({
 function getAllProperties() {
     return new Promise(async (resolve, reject) => {
         try {
-            let result = await property.find({});
+            let result = await Property.find({});
             console.log("Property list retrieved Sucessfully: ", result);
             resolve(result);
         } catch (error) {

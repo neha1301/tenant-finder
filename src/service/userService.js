@@ -1,8 +1,8 @@
 const { User } = require('../model');
 
-function saveUser({ firstName, lastName, email, mobileNumber, password}) {
+function saveUser({ firstName, lastName, email, mobileNumber, password, role}) {
     return new Promise(async (resolve, reject) => {
-        const user = new User({ firstName, lastName, email, mobileNumber, password });
+        const user = new User({ firstName, lastName, email, mobileNumber, password, role });
         try {
             let result = await user.save();
             console.log("User Saved Sucessfully: ", result);

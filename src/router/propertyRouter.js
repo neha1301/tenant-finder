@@ -2,39 +2,38 @@ const express = require('express');
 const router = express.Router();
 const { propertyController } = require("../controller");
 
-router.get('/properties', async (req, res) => {
+router.get('/api/properties', async (req, res) => {
     const { propertyName } = req.body;
     try {
-        let result = await propertyController.saveProperty(req.body);
+        let result = await propertyController.getProperties();
         res.status(201).json({
             status: "SUCCESS", // | "FAILED",
-            message: "Property saved successfuly.",
-            // error: "",
+            message: "Properties retrived successfuly.",
             data: result,
         });
     } catch (error) {
-        console.log("Error Occured while saving property: ", propertyName);
+        console.log("Error Occured while retriving property list: ", propertyName);
         res.status(400).json({
             status: "FAILED",
-            error: "Something went wrong while saving property."
+            error: "Something went wrong while retrived property list."
         });
     }
 })
 
-router.post('/save-property', async (req, res) => {
+router.post('/api/save-property', async (req, res) => {
     try {
-        let result = await propertyController.saveProperty();
+        let result = await propertyController.saveProperty(req.body);
         res.status(200).json({
             status: "SUCCESS", // | "FAILED",
-            message: "Retrieved property list successfuly.",
+            message: "Saved property list successfuly.",
             // error: "",
             data: result,
         });
     } catch (error) {
-        console.log("Error Occured while retrieved property list");
+        console.log("Error Occured while saving property - ", error);
         res.status(400).json({
             status: "FAILED",
-            error: "Something went wrong while while retrieved property list."
+            error: "Something went wrong while while savng property."
         });
     }
 })

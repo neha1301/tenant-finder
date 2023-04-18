@@ -30,11 +30,16 @@ export default function () {
     reader.readAsDataURL(file);
   };
 
-  const handlePostPropertyDetails = (propertyDetails) => {
-    axios.post(
-      "/save-property",
-      propertyDetails
-    )
+  const handlePostPropertyDetails = async (propertyDetails) => {
+    console.log("propertyDetails - ", propertyDetails)
+    try {
+      let response = await axios.post( "http://localhost:5001/api/save-property", propertyDetails );
+      console.log("response - ", response);
+    } catch (error) {
+      console.log("error - ", error);
+
+    }
+
   }
 
   const handleFormSubmit =(event) => {

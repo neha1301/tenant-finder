@@ -1,19 +1,19 @@
 const { userService } = require("../service");
 
-function signUpUser({ firstName, lastName, email, mobileNumber, password}) {
+function signUpUser({ firstName, lastName, email, mobileNumber, password, role}) {
     return new Promise(async (resolve, reject) => {
        try {
-            await authService.findUser(mobileNumber);
+            await userService.findUser(mobileNumber);
             console.log("User already exists with mobile number: ", mobileNumber);
             reject({
                 code: "MOBILE_NUMBER_EXISTS",
                 message: "Mobile number is already registered."
             })
         } catch (error) {
-            console.log(`Error in finding the user with mobile: ${mobileNumber} `, JSON.stringify(error));
+            console.log(`Error in finding the user with mobile: ${mobileNumber} `, error);
 
             try {
-                let result = await authService.saveUser({ firstName, lastName, email, mobileNumber, password })
+                let result = await userService.saveUser({ firstName, lastName, email, mobileNumber, password, role })
                 resolve(result)
             } catch (error) {
                 reject({
@@ -69,13 +69,15 @@ function validateOtp ({ mobileNumber, otp }) {
     })
 }
 
-function signinUser({mobileNumber, password}) {
+function signinUser({mobileNumber, role, password}) {
     return new Promise(async (resolve, reject) => {
         try {
-            let result = await authService.findUser(mobileNumber);
-            if (result.password === password) {
+            let result = await userService.findUser(mobileNumber);
+            if (result.password === password
+                 && result.role === role
+                 ) {
                 console.log("User login successfuly for mobile: ", mobileNumber)
-                resolve(true);
+                resolve(result);
             } else {
                 console.log("User login failed for mobile: ", mobileNumber)
                 reject({

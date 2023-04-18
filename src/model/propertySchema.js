@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const propertySchema = new Schema(
@@ -8,12 +8,9 @@ const propertySchema = new Schema(
     rent: Number,
     securityDeposit: Number,
     description: String,
-    imageList: [String],
-    // location: {
-      // Open in google map
+    imageList: String,
     locationName: String,
     googleMapLocation: String,
-    // },
   },
   {
     collection: "properties",

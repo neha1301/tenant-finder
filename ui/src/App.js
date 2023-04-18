@@ -8,6 +8,8 @@ import SignIn from "./SignInUp/SignIn";
 import SignUp from "./SignInUp/SignUp";
 import About from "./About/About";
 import AddProperty from "./views/AddProperty";
+import Otp from "./Otp";
+import PropertyList from "./views/PropertyList";
 
 import { useAuth } from "./context/authContext";
 
@@ -18,11 +20,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<NavBar />} />
-        <Route path="add-property" element={<AddProperty />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="signIn" element={<SignIn />} />
-        <Route path="signUp" element={<SignUp />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/add-property" element={<AddProperty />} />
+        <Route path="/verify-number" element={<Otp />} />
+        <Route path="/properties" element={<PropertyList />} />
       </Routes>
     </BrowserRouter>
   );
