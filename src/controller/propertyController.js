@@ -6,7 +6,8 @@ function saveProperty({
     securityDeposit,
     description,
     imageList,
-    location
+    location,
+    rent
 }) {
     return new Promise(async (resolve, reject) => {
         try {
@@ -16,7 +17,8 @@ function saveProperty({
                 securityDeposit,
                 description,
                 imageList,
-                location
+                location,
+                rent
             });
             console.log("Successfuly saved property: ", propertyName);
             resolve(result);
