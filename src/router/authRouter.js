@@ -82,7 +82,7 @@ router.get('/api/signin', async (req, res) => {
             status: "SUCCESS", // | "FAILED",
             message: "User logged in successfuly.",
             // error: "",
-            data: { firstName, lastName, email, role: "ADMIN", mobileNumber },
+            data: { firstName, lastName, email, role, mobileNumber },
         });
 
     } catch (error) {
