@@ -34,7 +34,7 @@ export default function () {
   const handlePostPropertyDetails = async (propertyDetails) => {
     console.log("propertyDetails - ", propertyDetails)
     try {
-      let response = await axios.post( "http://localhost:5001/api/save-property", propertyDetails );
+      let response = await axios.post( "/api/save-property", propertyDetails );
       console.log("response - ", response);
     } catch (error) {
       console.log("error - ", error);

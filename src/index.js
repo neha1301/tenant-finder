@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require('cors');
 const bodyParser = require('body-parser')
+const path = require('path');
 
 const config = require("./config");
 const router = require("./router");
@@ -16,11 +17,11 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true}))
 
 app.use(router);
 
-// // To serve UI and server from same server
-// app.use(express.static(path.join(__dirname, 'client/build')));
-// app.get('/', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-// });
+// To serve UI and server from same server
+app.use(express.static(path.join(__dirname, '../ui/build')));
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '../ui/build', 'index.html'));
+});
 
 app.listen(config.PORT, () => {
     console.log(`server is running at port no ${config.PORT}`);

@@ -15,7 +15,7 @@ function SignIn() {
 	const handleUserDetails = async ({mobileNumber, role, password}) => {
 		try {
 			const response = await axios.get(
-				`http://localhost:5001/api/signin?mobileNumber=${mobileNumber}&role=${role}&password=${password}`
+				`/api/signin?mobileNumber=${mobileNumber}&role=${role}&password=${password}`
 			);
 
 			const {status, data} = response.data;

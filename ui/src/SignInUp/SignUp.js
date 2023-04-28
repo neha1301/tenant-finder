@@ -14,7 +14,7 @@ function SignUp() {
   const handleSignup = async (signUpData) => {
     console.log("signUpData - ", signUpData);
     try {
-      let response  =  await  axios.post("http://localhost:5001/api/signup", signUpData)
+      let response  =  await  axios.post("/api/signup", signUpData)
         if (response.data?.status === "SUCCESS") {
           handleSignIn()
         } else {

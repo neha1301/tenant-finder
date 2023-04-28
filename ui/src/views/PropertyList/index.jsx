@@ -7,7 +7,7 @@ export default function () {
 
   const getProperties = async () => {
     try {
-      let response = await axios.get("http://localhost:5001/api/properties");
+      let response = await axios.get("/api/properties");
       setPropertyArray(response.data?.data || []);
     } catch(error) {
       console.log("error - ", error)
